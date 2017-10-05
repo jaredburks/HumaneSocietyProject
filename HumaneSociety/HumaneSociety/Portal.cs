@@ -21,7 +21,7 @@ namespace HumaneSociety
             {
                 case "1"://For Employees
                     Employee employee = new Employee();
-      
+                    employee.EmployeeMenu();
                     break;
                 case "2"://For adopters
                     Adopter adopter = new Adopter();
