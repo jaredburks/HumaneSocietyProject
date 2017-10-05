@@ -20,8 +20,12 @@ namespace HumaneSociety
             switch(option = Console.ReadLine())
             {
                 case "1"://For Employees
+                    Employee employee = new Employee();
+      
                     break;
                 case "2"://For adopters
+                    Adopter adopter = new Adopter();
+
                     break;
                 default:
                     Console.WriteLine("Please enter a valid option.\n");
