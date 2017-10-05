@@ -8,5 +8,11 @@ namespace HumaneSociety
 {
     class Adopter
     {
+        //Method for menu
+
+        //Method for creating a table to share personal info
+
+        //Method to search for an animal
+
     }
 }
