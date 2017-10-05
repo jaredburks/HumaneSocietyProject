@@ -8,5 +8,11 @@ namespace HumaneSociety
 {
     class Employee
     {
+        Animal_Info animal = new Animal_Info();
+        public void AddAnimal()
+        {
+            animal.ID = 1;
+
+        }
     }
 }
