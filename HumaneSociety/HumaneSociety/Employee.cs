@@ -53,9 +53,23 @@ namespace HumaneSociety
         //Method to search for animals by traits(properties)
 
         //Method to adopt an animal(change IsAdopted to true)
-
-        //Method to check if animal has had shots, and if not administer shots
-
+        public void ChangeAdoptedStatus(Animal_Info animal)
+        {
+            if(animal.IsAdopted == false)
+            {
+                animal.IsAdopted = true;
+            }
+            Console.WriteLine(animal.Name + " is now adopted");
+        }
+        //Method to administer shots to animal
+        public void GiveShots(Animal_Info animal)
+        {
+            if(animal.HasShots == false)
+            {
+                animal.HasShots = true;
+            }
+            Console.WriteLine(animal.Name + " has been given shots");
+        }
         //Method for import/export CSV file (like excel)
 
         //Method to display animal info
