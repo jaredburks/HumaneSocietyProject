@@ -23,7 +23,7 @@ namespace HumaneSociety
             switch(option = Console.ReadLine())
             {
                 case "1"://For Searching for an animal
-
+                    AnimalSearch();
                     break;
                 case "2"://For Adding an animal to database
                     AddAnimal();
@@ -58,7 +58,15 @@ namespace HumaneSociety
         //Method to search for animals by traits(properties)
         public void AnimalSearch()
         {
-            //database = new AnimalInfoDataContext();
+            Console.WriteLine("Enter the ID of the animal you want to find");
+            int creature = Convert.ToInt16(Console.ReadLine());
+            database = new AnimalInfoDataContext();
+
+            foreach(Animal_Info element in database.Animal_Infos)
+            {
+                Console.WriteLine("Found animal ID: " + element.ID);
+                DisplayAnimalInfo(element);
+            }
         }
         //Method to adopt an animal(change IsAdopted to true)
         public void ChangeAdoptedStatus(Animal_Info animal)
