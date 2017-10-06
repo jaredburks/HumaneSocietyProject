@@ -8,7 +8,7 @@ namespace HumaneSociety
 {
     class Employee
     {
-        Animal_Info animal = new Animal_Info();
+        Animal_Info animal;
 
         public void EmployeePrompt()
         {
@@ -36,8 +36,18 @@ namespace HumaneSociety
         //Method to Add an animal to the database
         public void AddAnimal()
         {
-            animal.ID = 1;
-
+            animal = new Animal_Info
+            {
+                Animal_type = Console.ReadLine(),
+                Name = Console.ReadLine(),
+                Age = Convert.ToInt32(Console.ReadLine()),
+                Room_ = Convert.ToInt32(Console.ReadLine()),
+                IsAdopted = Convert.ToBoolean(Console.ReadLine()),
+                HasShots = Convert.ToBoolean(Console.ReadLine()),
+                Amount_of_Food = Console.ReadLine(),
+                Price = Convert.ToDecimal(Console.ReadLine())
+            };
+            DisplayAnimalInfo(animal);
         }
 
         //Method to search for animals by traits(properties)
@@ -47,5 +57,18 @@ namespace HumaneSociety
         //Method to check if animal has had shots, and if not administer shots
 
         //Method for import/export CSV file (like excel)
+
+        //Method to display animal info
+        public void DisplayAnimalInfo(Animal_Info animal)
+        {
+            Console.WriteLine("Name: " + animal.Name);
+            Console.WriteLine("Type: " + animal.Animal_type);
+            Console.WriteLine("Age: " + animal.Age);
+            Console.WriteLine("Room#: " + animal.Room_);
+            Console.WriteLine("Adopted: " + animal.IsAdopted);
+            Console.WriteLine("Has Shots: " + animal.HasShots);
+            Console.WriteLine("Amount of Food: " + animal.Amount_of_Food);
+            Console.WriteLine("Price: " + animal.Price);
+        }
     }
 }
