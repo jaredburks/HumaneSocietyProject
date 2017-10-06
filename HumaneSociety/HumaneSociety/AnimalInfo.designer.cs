@@ -30,6 +30,9 @@ namespace HumaneSociety
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
+    partial void InsertAnimal_Info(Animal_Info instance);
+    partial void UpdateAnimal_Info(Animal_Info instance);
+    partial void DeleteAnimal_Info(Animal_Info instance);
     #endregion
 		
 		public AnimalInfoDataContext() : 
@@ -72,8 +75,10 @@ namespace HumaneSociety
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Animal_Info")]
-	public partial class Animal_Info
+	public partial class Animal_Info : INotifyPropertyChanging, INotifyPropertyChanged
 	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private int _ID;
 		
@@ -93,11 +98,36 @@ namespace HumaneSociety
 		
 		private decimal _Price;
 		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnAnimal_typeChanging(string value);
+    partial void OnAnimal_typeChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnAgeChanging(int value);
+    partial void OnAgeChanged();
+    partial void OnRoom_Changing(int value);
+    partial void OnRoom_Changed();
+    partial void OnIsAdoptedChanging(bool value);
+    partial void OnIsAdoptedChanged();
+    partial void OnHasShotsChanging(bool value);
+    partial void OnHasShotsChanged();
+    partial void OnAmount_of_FoodChanging(string value);
+    partial void OnAmount_of_FoodChanged();
+    partial void OnPriceChanging(decimal value);
+    partial void OnPriceChanged();
+    #endregion
+		
 		public Animal_Info()
 		{
+			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL", IsPrimaryKey=true)]
 		public int ID
 		{
 			get
@@ -108,7 +138,11 @@ namespace HumaneSociety
 			{
 				if ((this._ID != value))
 				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
 					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
 				}
 			}
 		}
@@ -124,7 +158,11 @@ namespace HumaneSociety
 			{
 				if ((this._Animal_type != value))
 				{
+					this.OnAnimal_typeChanging(value);
+					this.SendPropertyChanging();
 					this._Animal_type = value;
+					this.SendPropertyChanged("Animal_type");
+					this.OnAnimal_typeChanged();
 				}
 			}
 		}
@@ -140,7 +178,11 @@ namespace HumaneSociety
 			{
 				if ((this._Name != value))
 				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
 					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
 				}
 			}
 		}
@@ -156,7 +198,11 @@ namespace HumaneSociety
 			{
 				if ((this._Age != value))
 				{
+					this.OnAgeChanging(value);
+					this.SendPropertyChanging();
 					this._Age = value;
+					this.SendPropertyChanged("Age");
+					this.OnAgeChanged();
 				}
 			}
 		}
@@ -172,7 +218,11 @@ namespace HumaneSociety
 			{
 				if ((this._Room_ != value))
 				{
+					this.OnRoom_Changing(value);
+					this.SendPropertyChanging();
 					this._Room_ = value;
+					this.SendPropertyChanged("Room_");
+					this.OnRoom_Changed();
 				}
 			}
 		}
@@ -188,7 +238,11 @@ namespace HumaneSociety
 			{
 				if ((this._IsAdopted != value))
 				{
+					this.OnIsAdoptedChanging(value);
+					this.SendPropertyChanging();
 					this._IsAdopted = value;
+					this.SendPropertyChanged("IsAdopted");
+					this.OnIsAdoptedChanged();
 				}
 			}
 		}
@@ -204,7 +258,11 @@ namespace HumaneSociety
 			{
 				if ((this._HasShots != value))
 				{
+					this.OnHasShotsChanging(value);
+					this.SendPropertyChanging();
 					this._HasShots = value;
+					this.SendPropertyChanged("HasShots");
+					this.OnHasShotsChanged();
 				}
 			}
 		}
@@ -220,7 +278,11 @@ namespace HumaneSociety
 			{
 				if ((this._Amount_of_Food != value))
 				{
+					this.OnAmount_of_FoodChanging(value);
+					this.SendPropertyChanging();
 					this._Amount_of_Food = value;
+					this.SendPropertyChanged("Amount_of_Food");
+					this.OnAmount_of_FoodChanged();
 				}
 			}
 		}
@@ -236,8 +298,32 @@ namespace HumaneSociety
 			{
 				if ((this._Price != value))
 				{
+					this.OnPriceChanging(value);
+					this.SendPropertyChanging();
 					this._Price = value;
+					this.SendPropertyChanged("Price");
+					this.OnPriceChanged();
 				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}

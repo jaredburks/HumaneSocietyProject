@@ -8,6 +8,7 @@ namespace HumaneSociety
 {
     class Employee
     {
+        AnimalInfoDataContext database;
         Animal_Info animal;
 
         public void EmployeePrompt()
@@ -36,6 +37,8 @@ namespace HumaneSociety
         //Method to Add an animal to the database
         public void AddAnimal()
         {
+            database = new AnimalInfoDataContext();
+            Console.WriteLine("Enter animal type, name, age, room#, IsAdopted(false for no, true for yes), HasShots(false for no, true for yes), and amount of food");
             animal = new Animal_Info
             {
                 Animal_type = Console.ReadLine(),
@@ -45,13 +48,18 @@ namespace HumaneSociety
                 IsAdopted = Convert.ToBoolean(Console.ReadLine()),
                 HasShots = Convert.ToBoolean(Console.ReadLine()),
                 Amount_of_Food = Console.ReadLine(),
-                Price = Convert.ToDecimal(Console.ReadLine())
+                Price = 200.00M
             };
+            database.Animal_Infos.InsertOnSubmit(animal);
+            database.SubmitChanges();
             DisplayAnimalInfo(animal);
         }
 
         //Method to search for animals by traits(properties)
-
+        public void AnimalSearch()
+        {
+            //database = new AnimalInfoDataContext();
+        }
         //Method to adopt an animal(change IsAdopted to true)
         public void ChangeAdoptedStatus(Animal_Info animal)
         {
