@@ -56,7 +56,7 @@ namespace HumaneSociety
                 Room_ = Convert.ToInt32(Console.ReadLine()),
                 IsAdopted = Convert.ToBoolean(Console.ReadLine()),
                 HasShots = Convert.ToBoolean(Console.ReadLine()),
-                Amount_of_Food = Console.ReadLine(),
+                Food_Daily = Console.ReadLine(),
                 Price = 200.00M
             };
             database.Animal_Infos.InsertOnSubmit(animal);
@@ -158,7 +158,7 @@ namespace HumaneSociety
             Console.WriteLine("Room#: " + animal.Room_);
             Console.WriteLine("Adopted: " + animal.IsAdopted);
             Console.WriteLine("Has Shots: " + animal.HasShots);
-            Console.WriteLine("Amount of Food: " + animal.Amount_of_Food);
+            Console.WriteLine("Food Daily: " + animal.Food_Daily);
             Console.WriteLine("Price: " + animal.Price);
         }
     }
