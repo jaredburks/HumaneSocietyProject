@@ -31,9 +31,9 @@ namespace HumaneSociety
                     EmployeeMenu();
                     break;
                 case "3":
-
+                    
                     break;
-                case "3"://Back to Portal
+                case "4"://Back to Portal
                     Portal portal = new Portal();
                     portal.Run();
                     break;
@@ -81,11 +81,33 @@ namespace HumaneSociety
                     {
                         AskForShots(element);
                     }
+                    if(element.IsAdopted == false)
+                    {
+                        AskToAdopt(element);
+                    }
                 }
                 else
                 {
                     Console.WriteLine("No animal with that ID in database.");
                 }
+            }
+        }
+        public void AskToAdopt(Animal_Info animal)
+        {
+            string pick;
+            Console.WriteLine("Would you like to change adoption status for " + animal.Name + " ?");
+            Console.WriteLine("Enter 'y' for yes, 'n' for no");
+            switch (pick = Console.ReadLine())
+            {
+                case "y":
+                    ChangeAdoptedStatus(animal);
+                    break;
+                case "n":
+                    break;
+                default:
+                    Console.WriteLine("Please enter 'y' or 'n' in lower case.\n");
+                    AskForShots(animal);
+                    break;
             }
         }
         //Method to adopt an animal(change IsAdopted to true)
@@ -105,15 +127,16 @@ namespace HumaneSociety
         {
             string pick;
             Console.WriteLine("Would you like to administer " + animal.Name + " shots?");
+            Console.WriteLine("Enter 'y' for yes, 'n' for no");
             switch (pick = Console.ReadLine())
             {
-                case "yes":
+                case "y":
                     GiveShots(animal);
                     break;
-                case "no":
+                case "n":
                     break;
                 default:
-                    Console.WriteLine("Please enter 'yes' or 'no' in lower case.");
+                    Console.WriteLine("Please enter 'y' or 'n' in lower case.\n");
                     AskForShots(element);
                     break;
             }
@@ -129,6 +152,7 @@ namespace HumaneSociety
         //Method to display animal info
         public void DisplayAnimalInfo(Animal_Info animal)
         {
+            Console.WriteLine("ID: " + animal.ID);
             Console.WriteLine("Name: " + animal.Name);
             Console.WriteLine("Type: " + animal.Animal_type);
             Console.WriteLine("Age: " + animal.Age);
