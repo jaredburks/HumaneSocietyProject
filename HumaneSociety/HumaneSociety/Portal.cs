@@ -25,7 +25,7 @@ namespace HumaneSociety
                     break;
                 case "2"://For adopters
                     Adopter adopter = new Adopter();
-
+                    adopter.AdopterMenu();
                     break;
                 default:
                     Console.WriteLine("Please enter a valid option.\n");
