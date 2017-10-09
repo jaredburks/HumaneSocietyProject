@@ -10,7 +10,7 @@ namespace HumaneSociety
     {
         AnimalInfoDataContext database;
         Employee employee;
-
+        AdopterInfo adopter;
         public Adopter()
         {
             database = new AnimalInfoDataContext();
@@ -32,8 +32,11 @@ namespace HumaneSociety
             {
                 case "1":
                     SearchMenu();
+                    AdopterMenu();
                     break;
                 case "2":
+                    AddProfile();
+                    AdopterMenu();
                     break;
                 case "3":
                     Portal portal = new Portal();
@@ -47,7 +50,30 @@ namespace HumaneSociety
         }
 
         //Method for creating a table to share personal info
+        public void AddProfile()
+        {
+            Console.WriteLine("Enter first name, last name, age, city");
 
+            adopter = new AdopterInfo()
+            {
+                First_Name = Console.ReadLine(),
+                Last_Name = Console.ReadLine(),
+                Age = Convert.ToInt32(Console.ReadLine()),
+                City = Console.ReadLine()
+
+            };
+            database.AdopterInfos.InsertOnSubmit(adopter);
+            database.SubmitChanges();
+            DisplayAdopterInfo(adopter);
+
+        }
+        public void DisplayAdopterInfo(AdopterInfo adopter)
+        {
+            Console.WriteLine("First Name: " + adopter.First_Name);
+            Console.WriteLine("Last Name: " + adopter.Last_Name);
+            Console.WriteLine("Age: " + adopter.Age);
+            Console.WriteLine("City: " + adopter.City);
+        }
         //Method to search for an animal by traits
         public void SearchMenu()
         {

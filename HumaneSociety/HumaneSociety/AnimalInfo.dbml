@@ -13,4 +13,13 @@
       <Column Name="Price" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
+  <Table Name="dbo.AdopterInfo" Member="AdopterInfos">
+    <Type Name="AdopterInfo">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="[First Name]" Member="First_Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[Last Name]" Member="Last_Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Age" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="City" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
 </Database>

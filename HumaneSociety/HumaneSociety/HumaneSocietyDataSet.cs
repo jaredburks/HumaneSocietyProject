@@ -7,9 +7,12 @@
     }
 }
 
-namespace HumaneSociety.HumaneSocietyDataSetTableAdapters {
-    
-    
+namespace HumaneSociety.HumaneSocietyDataSetTableAdapters
+{
+    partial class AdopterInfoTableAdapter
+    {
+    }
+
     public partial class Animal_InfoTableAdapter {
     }
 }

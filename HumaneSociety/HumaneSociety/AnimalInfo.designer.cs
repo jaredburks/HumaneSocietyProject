@@ -33,6 +33,9 @@ namespace HumaneSociety
     partial void InsertAnimal_Info(Animal_Info instance);
     partial void UpdateAnimal_Info(Animal_Info instance);
     partial void DeleteAnimal_Info(Animal_Info instance);
+    partial void InsertAdopterInfo(AdopterInfo instance);
+    partial void UpdateAdopterInfo(AdopterInfo instance);
+    partial void DeleteAdopterInfo(AdopterInfo instance);
     #endregion
 		
 		public AnimalInfoDataContext() : 
@@ -70,6 +73,14 @@ namespace HumaneSociety
 			get
 			{
 				return this.GetTable<Animal_Info>();
+			}
+		}
+		
+		public System.Data.Linq.Table<AdopterInfo> AdopterInfos
+		{
+			get
+			{
+				return this.GetTable<AdopterInfo>();
 			}
 		}
 	}
@@ -303,6 +314,164 @@ namespace HumaneSociety
 					this._Price = value;
 					this.SendPropertyChanged("Price");
 					this.OnPriceChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AdopterInfo")]
+	public partial class AdopterInfo : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _First_Name;
+		
+		private string _Last_Name;
+		
+		private int _Age;
+		
+		private string _City;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnFirst_NameChanging(string value);
+    partial void OnFirst_NameChanged();
+    partial void OnLast_NameChanging(string value);
+    partial void OnLast_NameChanged();
+    partial void OnAgeChanging(int value);
+    partial void OnAgeChanged();
+    partial void OnCityChanging(string value);
+    partial void OnCityChanged();
+    #endregion
+		
+		public AdopterInfo()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[First Name]", Storage="_First_Name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string First_Name
+		{
+			get
+			{
+				return this._First_Name;
+			}
+			set
+			{
+				if ((this._First_Name != value))
+				{
+					this.OnFirst_NameChanging(value);
+					this.SendPropertyChanging();
+					this._First_Name = value;
+					this.SendPropertyChanged("First_Name");
+					this.OnFirst_NameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Last Name]", Storage="_Last_Name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Last_Name
+		{
+			get
+			{
+				return this._Last_Name;
+			}
+			set
+			{
+				if ((this._Last_Name != value))
+				{
+					this.OnLast_NameChanging(value);
+					this.SendPropertyChanging();
+					this._Last_Name = value;
+					this.SendPropertyChanged("Last_Name");
+					this.OnLast_NameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Age", DbType="Int NOT NULL")]
+		public int Age
+		{
+			get
+			{
+				return this._Age;
+			}
+			set
+			{
+				if ((this._Age != value))
+				{
+					this.OnAgeChanging(value);
+					this.SendPropertyChanging();
+					this._Age = value;
+					this.SendPropertyChanged("Age");
+					this.OnAgeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_City", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string City
+		{
+			get
+			{
+				return this._City;
+			}
+			set
+			{
+				if ((this._City != value))
+				{
+					this.OnCityChanging(value);
+					this.SendPropertyChanging();
+					this._City = value;
+					this.SendPropertyChanged("City");
+					this.OnCityChanged();
 				}
 			}
 		}
