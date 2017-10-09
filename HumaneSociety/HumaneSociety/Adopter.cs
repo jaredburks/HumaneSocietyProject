@@ -45,7 +45,7 @@ namespace HumaneSociety
                     break;
             }
         }
-  
+
         //Method for creating a table to share personal info
 
         //Method to search for an animal by traits
@@ -59,10 +59,10 @@ namespace HumaneSociety
                     SearchByType();
                     break;
                 case "2":
-
+                    SearchByAge();
                     break;
                 case "3":
-
+                    SearchByShots();
                     break;
                 case "4":
                     AdopterMenu();
@@ -73,20 +73,47 @@ namespace HumaneSociety
                     break;
             }
         }
-
-        //Method for search
         public void SearchByType()
         {
             string type = Console.ReadLine();
             foreach (Animal_Info element in database.Animal_Infos)
             {
-                if ( element.Animal_type == type)
+                if (element.Animal_type == type)
                 {
                     employee.DisplayAnimalInfo(element);
                 }
                 else
                 {
                     Console.WriteLine("No animal of that type in database.");
+                }
+            }
+        }
+        public void SearchByAge()
+        {
+            int age = Convert.ToInt32(Console.ReadLine());
+            foreach (Animal_Info element in database.Animal_Infos)
+            {
+                if (element.Age == age)
+                {
+                    employee.DisplayAnimalInfo(element);
+                }
+                else
+                {
+                    Console.WriteLine("No animal of that age in database.");
+                }
+            }
+        }
+        public void SearchByShots()
+        {
+            foreach (Animal_Info element in database.Animal_Infos)
+            {
+                if (element.HasShots == true)
+                {
+                    employee.DisplayAnimalInfo(element);
+                }
+                else
+                {
+                    Console.WriteLine("No animals have shots in database.");
                 }
             }
         }
