@@ -55,7 +55,7 @@ namespace HumaneSociety
             DisplayAnimalInfo(animal);
         }
 
-        //Method to search for animals by traits(properties)
+        //Method to search for animals by ID
         public void AnimalSearch()
         {
             Console.WriteLine("Enter the ID of the animal you want to find");
@@ -64,8 +64,15 @@ namespace HumaneSociety
 
             foreach(Animal_Info element in database.Animal_Infos)
             {
-                Console.WriteLine("Found animal ID: " + element.ID);
-                DisplayAnimalInfo(element);
+                if(element.ID == creature)
+                {
+                    Console.WriteLine("Found animal ID: " + element.ID);
+                    DisplayAnimalInfo(element);
+                }
+                else
+                {
+                    Console.WriteLine("No animal with that ID in database.");
+                }
             }
         }
         //Method to adopt an animal(change IsAdopted to true)
