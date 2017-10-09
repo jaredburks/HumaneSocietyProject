@@ -30,6 +30,9 @@ namespace HumaneSociety
                     AddAnimal();
                     EmployeeMenu();
                     break;
+                case "3":
+
+                    break;
                 case "3"://Back to Portal
                     Portal portal = new Portal();
                     portal.Run();
@@ -74,6 +77,10 @@ namespace HumaneSociety
                 {
                     Console.WriteLine("Found animal ID: " + element.ID);
                     DisplayAnimalInfo(element);
+                    if(element.HasShots == false)
+                    {
+                        AskForShots(element);
+                    }
                 }
                 else
                 {
@@ -94,14 +101,28 @@ namespace HumaneSociety
                 Console.WriteLine(animal.Name + " is already adopted.");
             }
         }
+        public void AskForShots(Animal_Info element)
+        {
+            string pick;
+            Console.WriteLine("Would you like to administer " + animal.Name + " shots?");
+            switch (pick = Console.ReadLine())
+            {
+                case "yes":
+                    GiveShots(animal);
+                    break;
+                case "no":
+                    break;
+                default:
+                    Console.WriteLine("Please enter 'yes' or 'no' in lower case.");
+                    AskForShots(element);
+                    break;
+            }
+        }
         //Method to administer shots to animal
         public void GiveShots(Animal_Info animal)
         {
-            if(animal.HasShots == false)
-            {
                 animal.HasShots = true;
                 Console.WriteLine(animal.Name + " has been given shots.");
-            }
         }
         //Method for import/export CSV file (like excel)
 
