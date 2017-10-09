@@ -30,10 +30,7 @@ namespace HumaneSociety
                     AddAnimal();
                     EmployeeMenu();
                     break;
-                case "3":
-                    
-                    break;
-                case "4"://Back to Portal
+                case "3"://Back to Portal
                     Portal portal = new Portal();
                     portal.Run();
                     break;
