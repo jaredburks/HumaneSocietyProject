@@ -13,7 +13,7 @@ namespace HumaneSociety
 
         public void EmployeePrompt()
         {
-            Console.WriteLine("Employee Menu\nENTER '1' to search for an animal, '2' to add an animal to database.");
+            Console.WriteLine("Employee Menu\nENTER '1' to search for an animal, '2' to add an animal to database, '3' to return to Portal.");
         }
         //Method for employee menu 
         public void EmployeeMenu()
@@ -24,9 +24,15 @@ namespace HumaneSociety
             {
                 case "1"://For Searching for an animal
                     AnimalSearch();
+                    EmployeeMenu();
                     break;
                 case "2"://For Adding an animal to database
                     AddAnimal();
+                    EmployeeMenu();
+                    break;
+                case "3"://Back to Portal
+                    Portal portal = new Portal();
+                    portal.Run();
                     break;
                 default:
                     Console.WriteLine("Please enter a valid option.\n");
@@ -81,8 +87,12 @@ namespace HumaneSociety
             if(animal.IsAdopted == false)
             {
                 animal.IsAdopted = true;
+                Console.WriteLine(animal.Name + " is now adopted.");
             }
-            Console.WriteLine(animal.Name + " is now adopted");
+            else
+            {
+                Console.WriteLine(animal.Name + " is already adopted.");
+            }
         }
         //Method to administer shots to animal
         public void GiveShots(Animal_Info animal)
@@ -90,8 +100,8 @@ namespace HumaneSociety
             if(animal.HasShots == false)
             {
                 animal.HasShots = true;
+                Console.WriteLine(animal.Name + " has been given shots.");
             }
-            Console.WriteLine(animal.Name + " has been given shots");
         }
         //Method for import/export CSV file (like excel)
 
