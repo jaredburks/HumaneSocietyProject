@@ -11,6 +11,10 @@ namespace HumaneSociety
         AnimalInfoDataContext database;
         Animal_Info animal;
 
+        public Employee()
+        {
+            database = new AnimalInfoDataContext();
+        }
         public void EmployeePrompt()
         {
             Console.WriteLine("Employee Menu\nENTER '1' to search for an animal, '2' to add an animal to database, '3' to return to Portal.");
@@ -43,7 +47,6 @@ namespace HumaneSociety
         //Method to Add an animal to the database
         public void AddAnimal()
         {
-            database = new AnimalInfoDataContext();
             Console.WriteLine("Enter animal type, name, age, room#, IsAdopted(false for no, true for yes), HasShots(false for no, true for yes), and amount of food");
             animal = new Animal_Info
             {
@@ -66,7 +69,6 @@ namespace HumaneSociety
         {
             Console.WriteLine("Enter the ID of the animal you want to find");
             int creature = Convert.ToInt16(Console.ReadLine());
-            database = new AnimalInfoDataContext();
 
             foreach(Animal_Info element in database.Animal_Infos)
             {
