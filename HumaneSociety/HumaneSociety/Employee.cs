@@ -140,7 +140,7 @@ namespace HumaneSociety
         }
         public void CheckFunds()
         {
-            Console.WriteLine("Humane Society has $" + bank + " in funds.");
+            Console.WriteLine("Humane Society has $" + bank + " in funds.\n");
         }
         //Take adopter's cash to pay for animal
         public void PayUp(AdopterInfo person)
@@ -152,14 +152,14 @@ namespace HumaneSociety
             }
             else
             {
-                Console.WriteLine("Not enough money to adopt today :(");
+                Console.WriteLine("Not enough money to adopt today :(\n");
             }
         }
         //Method to adopt an animal(change IsAdopted to true)
         public void ChangeAdoptedStatus(Animal_Info animal)
         {
             animal.IsAdopted = true;
-            Console.WriteLine(animal.Name + " is now adopted.");
+            Console.WriteLine(animal.Name + " is now adopted.\n");
         }
         public void AskForShots(Animal_Info element)
         {
