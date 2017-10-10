@@ -108,7 +108,7 @@ namespace HumaneSociety
             switch (pick = Console.ReadLine())
             {
                 case "y":
-                    ChangeAdoptedStatus(animal);
+                    GetAdopter();
                     break;
                 case "n":
                     break;
@@ -149,6 +149,7 @@ namespace HumaneSociety
             {
                 person.Wallet = person.Wallet - 200;
                 bank += 200;
+                ChangeAdoptedStatus(animal);
             }
             else
             {
