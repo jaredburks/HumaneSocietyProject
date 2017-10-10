@@ -1,0 +1,4 @@
+Animal type,Name,Age,Room#,IsAdopted,HasShots,Food Daily
+Fish,Brutus,1,12,FALSE,TRUE,some crackers
+Hippo,Tiny,2,3,FALSE,FALSE,4 pounds
+Cat,Tiffany,4,666,FALSE,FALSE,cup of cat scat
