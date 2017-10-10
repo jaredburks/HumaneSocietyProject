@@ -2,16 +2,16 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="AnimalInfo">
   <DataContextMoniker Name="/AnimalInfoDataContext" />
   <nestedChildShapes>
-    <classShape Id="e3df8485-3947-4c2b-9ac3-3ae1a381f4ee" absoluteBounds="6.375, 3, 2, 1.7708968098958331">
-      <DataClassMoniker Name="/AnimalInfoDataContext/AdopterInfo" />
-      <nestedChildShapes>
-        <elementListCompartment Id="1628ec99-868c-447b-aebd-a251a2bb8eda" absoluteBounds="6.39, 3.46, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="d9b97cf7-9b07-48ff-9da2-fdb7398b0295" absoluteBounds="1, 1.375, 2, 2.5401025390625">
       <DataClassMoniker Name="/AnimalInfoDataContext/Animal_Info" />
       <nestedChildShapes>
         <elementListCompartment Id="1166927d-1942-4e7e-9408-f7847709c20b" absoluteBounds="1.0150000000000001, 1.835, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7f980bd7-d28c-4b87-898f-259489ec6a6f" absoluteBounds="4.25, 3.125, 2, 1.9631982421875">
+      <DataClassMoniker Name="/AnimalInfoDataContext/AdopterInfo" />
+      <nestedChildShapes>
+        <elementListCompartment Id="40a4fae6-a2c8-4270-85d7-87fbf71a8b80" absoluteBounds="4.265, 3.585, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

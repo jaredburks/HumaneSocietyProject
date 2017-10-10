@@ -194,7 +194,7 @@ namespace HumaneSociety
             Console.WriteLine("Adopted: " + animal.IsAdopted);
             Console.WriteLine("Has Shots: " + animal.HasShots);
             Console.WriteLine("Food Daily: " + animal.Food_Daily);
-            Console.WriteLine("Price: " + animal.Price);
+            Console.WriteLine("Price: $" + animal.Price);
         }
     }
 }

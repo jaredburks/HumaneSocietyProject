@@ -59,8 +59,8 @@ namespace HumaneSociety
                 First_Name = Console.ReadLine(),
                 Last_Name = Console.ReadLine(),
                 Age = Convert.ToInt32(Console.ReadLine()),
-                City = Console.ReadLine()
-
+                City = Console.ReadLine(),
+                Wallet = 400.00M
             };
             database.AdopterInfos.InsertOnSubmit(adopter);
             database.SubmitChanges();
@@ -69,10 +69,12 @@ namespace HumaneSociety
         }
         public void DisplayAdopterInfo(AdopterInfo adopter)
         {
+            Console.WriteLine("ID: " + adopter.ID);
             Console.WriteLine("First Name: " + adopter.First_Name);
             Console.WriteLine("Last Name: " + adopter.Last_Name);
             Console.WriteLine("Age: " + adopter.Age);
             Console.WriteLine("City: " + adopter.City);
+            Console.WriteLine("Wallet: $" + adopter.Wallet);
         }
         //Method to search for an animal by traits
         public void SearchMenu()
