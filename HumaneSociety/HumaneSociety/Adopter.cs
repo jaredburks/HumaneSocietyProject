@@ -21,7 +21,7 @@ namespace HumaneSociety
         public void AdopterPrompt()
         {
             Console.WriteLine("Welcome to the Adopter menu.");
-            Console.WriteLine("Enter '1' to search for animal by traits, '2' to create a personal info profile, '3' to return to Portal menu.");
+            Console.WriteLine("Enter '1' to search for animal by traits, '2' to create a personal info profile, '3' to return to Portal menu.\n");
         }
         //Method for menu
         public void AdopterMenu()
@@ -52,16 +52,24 @@ namespace HumaneSociety
         //Method for creating a table to share personal info
         public void AddProfile()
         {
-            Console.WriteLine("Enter first name, last name, age, city");
-
-            adopter = new AdopterInfo()
+            Console.WriteLine("Enter first name, last name, age, city\n");
+            try
             {
-                First_Name = Console.ReadLine(),
-                Last_Name = Console.ReadLine(),
-                Age = Convert.ToInt32(Console.ReadLine()),
-                City = Console.ReadLine(),
-                Wallet = 400.00M
-            };
+                adopter = new AdopterInfo()
+                {
+                    First_Name = Console.ReadLine(),
+                    Last_Name = Console.ReadLine(),
+                    Age = Convert.ToInt32(Console.ReadLine()),
+                    City = Console.ReadLine(),
+                    Wallet = 400.00M
+                };
+            }
+            catch(FormatException)
+            {
+                Console.WriteLine("You've entered an invalid response. For age and room# you must type a number.");
+                Console.WriteLine("For IsAdopted and HasShots you must type 'true' or 'false'\n");
+                AddProfile();
+            }
             database.AdopterInfos.InsertOnSubmit(adopter);
             database.SubmitChanges();
             DisplayAdopterInfo(adopter);
@@ -74,13 +82,13 @@ namespace HumaneSociety
             Console.WriteLine("Last Name: " + adopter.Last_Name);
             Console.WriteLine("Age: " + adopter.Age);
             Console.WriteLine("City: " + adopter.City);
-            Console.WriteLine("Wallet: $" + adopter.Wallet);
+            Console.WriteLine("Wallet: $" + adopter.Wallet + "\n");
         }
         //Method to search for an animal by traits
         public void SearchMenu()
         {
             string option;
-            Console.WriteLine("Enter '1' to search by type of animal, '2' by age, '3' for animals that have shots, '4' to return to Adopter menu.");
+            Console.WriteLine("Enter '1' to search by type of animal, '2' by age, '3' for animals that have shots, '4' to return to Adopter menu.\n");
             switch (option = Console.ReadLine())
             {
                 case "1":
@@ -112,7 +120,7 @@ namespace HumaneSociety
                 }
                 else
                 {
-                    Console.WriteLine("No animal of that type in database.");
+                    Console.WriteLine("No animal of that type in database.\n");
                 }
             }
         }
@@ -127,7 +135,7 @@ namespace HumaneSociety
                 }
                 else
                 {
-                    Console.WriteLine("No animal of that age in database.");
+                    Console.WriteLine("No animal of that age in database.\n");
                 }
             }
         }
@@ -141,7 +149,7 @@ namespace HumaneSociety
                 }
                 else
                 {
-                    Console.WriteLine("No animals have shots in database.");
+                    Console.WriteLine("No animals have shots in database.\n");
                 }
             }
         }
