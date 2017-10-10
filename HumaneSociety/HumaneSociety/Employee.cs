@@ -17,7 +17,7 @@ namespace HumaneSociety
         }
         public void EmployeePrompt()
         {
-            Console.WriteLine("Employee Menu\nENTER '1' to search for an animal, '2' to add an animal to database, '3' to return to Portal.");
+            Console.WriteLine("Employee Menu\nENTER '1' to search for an animal, '2' to add an animal to database, '3' to Import CSV, '4' to return to Portal.");
         }
         //Method for employee menu 
         public void EmployeeMenu()
@@ -34,7 +34,11 @@ namespace HumaneSociety
                     AddAnimal();
                     EmployeeMenu();
                     break;
-                case "3"://Back to Portal
+                case "3":
+                    ImportCSV();
+                    EmployeeMenu();
+                    break;
+                case "4"://Back to Portal
                     Portal portal = new Portal();
                     portal.Run();
                     break;
@@ -105,9 +109,14 @@ namespace HumaneSociety
                     break;
                 default:
                     Console.WriteLine("Please enter 'y' or 'n' in lower case.\n");
-                    AskForShots(animal);
+                    AskToAdopt(animal);
                     break;
             }
+        }
+        //Method to get Adopter ID and take their moneys
+        public void GetAdopter()
+        {
+            Console.WriteLine("Enter the ID of the person that is adopting.\n");
         }
         //Method to adopt an animal(change IsAdopted to true)
         public void ChangeAdoptedStatus(Animal_Info animal)
@@ -147,7 +156,25 @@ namespace HumaneSociety
                 Console.WriteLine(animal.Name + " has been given shots.");
         }
         //Method for import/export CSV file (like excel)
+        public void ImportCSV()
+        {
+            // Create the IEnumerable data source
+            string[] lines = System.IO.File.ReadAllLines(@"C:/Users/Jared/Documents/Visual Studio 2015/Projects/HumaneSocietyLog.csv");
 
+            // Create the query. Put field 2 first, then
+            // reverse and combine fields 0 and 1 from the old field
+            IEnumerable<string> query =
+                from line in lines
+                let x = line.Split(',')
+                select x[0] + ", " + (x[1] + " " + x[2] + " " + x[3] + " " + x[4] + " " + x[5] + " " + x[6]);
+
+            // Execute the query and write out the new file. Note that WriteAllLines
+            // takes a string[], so ToArray is called on the query.
+            System.IO.File.WriteAllLines(@"C:/Users/Jared/Documents/Visual Studio 2015/Projects/HumaneSocietyLog2.csv", query.ToArray());
+
+            Console.WriteLine("HumaneSocietyLog2.csv written to disk. Press any key to return to Employee Menu.\n");
+            Console.ReadKey();
+        }
         //Method to display animal info
         public void DisplayAnimalInfo(Animal_Info animal)
         {
