@@ -56,18 +56,27 @@ namespace HumaneSociety
         //Method to Add an animal to the database
         public void AddAnimal()
         {
-            Console.WriteLine("Enter animal type, name, age, room#, IsAdopted(false for no, true for yes), HasShots(false for no, true for yes), daily food intake.");
-            animal = new Animal_Info
+            Console.WriteLine("Enter animal type, name, age, room#, IsAdopted(false for no, true for yes), HasShots(false for no, true for yes), daily food intake.\n");
+            try
             {
-                Animal_type = Console.ReadLine(),
-                Name = Console.ReadLine(),
-                Age = Convert.ToInt32(Console.ReadLine()),
-                Room_ = Convert.ToInt32(Console.ReadLine()),
-                IsAdopted = Convert.ToBoolean(Console.ReadLine()),
-                HasShots = Convert.ToBoolean(Console.ReadLine()),
-                Food_Daily = Console.ReadLine(),
-                Price = 200.00M
-            };
+                animal = new Animal_Info
+                {
+                    Animal_type = Console.ReadLine(),
+                    Name = Console.ReadLine(),
+                    Age = Convert.ToInt32(Console.ReadLine()),
+                    Room_ = Convert.ToInt32(Console.ReadLine()),
+                    IsAdopted = Convert.ToBoolean(Console.ReadLine()),
+                    HasShots = Convert.ToBoolean(Console.ReadLine()),
+                    Food_Daily = Console.ReadLine(),
+                    Price = 200.00M
+                };
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("You've entered an invalid response. For age and room# you must type a number.");
+                Console.WriteLine("For IsAdopted and HasShots you must type 'true' or 'false'\n");
+                AddAnimal();
+            }
             database.Animal_Infos.InsertOnSubmit(animal);
             database.SubmitChanges();
             DisplayAnimalInfo(animal);
@@ -113,7 +122,7 @@ namespace HumaneSociety
         {
             string pick;
             Console.WriteLine("Would you like to change adoption status for " + animal.Name + " ?");
-            Console.WriteLine("Enter 'y' for yes, 'n' for no");
+            Console.WriteLine("Enter 'y' for yes, 'n' for no\n");
             switch (pick = Console.ReadLine())
             {
                 case "y":
@@ -143,7 +152,7 @@ namespace HumaneSociety
                 }
                 else
                 {
-                    Console.WriteLine("No person with that ID in database.");
+                    Console.WriteLine("No person with that ID in database.\n");
                 }
             }
         }
@@ -175,7 +184,7 @@ namespace HumaneSociety
         {
             string pick;
             Console.WriteLine("Would you like to administer " + animal.Name + " shots?");
-            Console.WriteLine("Enter 'y' for yes, 'n' for no");
+            Console.WriteLine("Enter 'y' for yes, 'n' for no\n");
             switch (pick = Console.ReadLine())
             {
                 case "y":
@@ -193,7 +202,7 @@ namespace HumaneSociety
         public void GiveShots(Animal_Info animal)
         {
                 animal.HasShots = true;
-                Console.WriteLine(animal.Name + " has been given shots.");
+                Console.WriteLine(animal.Name + " has been given shots.\n");
         }
         //Method for import/export CSV file (like excel)
         public void ImportCSV()
@@ -226,7 +235,7 @@ namespace HumaneSociety
             Console.WriteLine("Adopted: " + animal.IsAdopted);
             Console.WriteLine("Has Shots: " + animal.HasShots);
             Console.WriteLine("Food Daily: " + animal.Food_Daily);
-            Console.WriteLine("Price: $" + animal.Price);
+            Console.WriteLine("Price: $" + animal.Price + "\n");
         }
     }
 }
