@@ -76,27 +76,36 @@ namespace HumaneSociety
         //Method to search for animals by ID
         public void AnimalSearch()
         {
-            Console.WriteLine("Enter the ID of the animal you want to find");
-            int creature = Convert.ToInt16(Console.ReadLine());
+            var db = database.Animal_Infos.ToArray();
 
-            foreach(Animal_Info element in database.Animal_Infos)
+            if (db.Length == 0)
             {
-                if(element.ID == creature)
+                Console.WriteLine("No animals in database.\n");
+            }
+            else
+            {
+                Console.WriteLine("Enter the ID of the animal you want to find");
+                int creature = Convert.ToInt16(Console.ReadLine());
+
+                foreach (Animal_Info element in database.Animal_Infos)
                 {
-                    Console.WriteLine("Found animal ID: " + element.ID);
-                    DisplayAnimalInfo(element);
-                    if(element.HasShots == false)
+                    if (element.ID == creature)
                     {
-                        AskForShots(element);
+                        Console.WriteLine("Found animal ID: " + element.ID);
+                        DisplayAnimalInfo(element);
+                        if (element.HasShots == false)
+                        {
+                            AskForShots(element);
+                        }
+                        if (element.IsAdopted == false)
+                        {
+                            AskToAdopt(element);
+                        }
                     }
-                    if(element.IsAdopted == false)
+                    else
                     {
-                        AskToAdopt(element);
+                        Console.WriteLine("No animal with that ID in database.\n");
                     }
-                }
-                else
-                {
-                    Console.WriteLine("No animal with that ID in database.");
                 }
             }
         }
