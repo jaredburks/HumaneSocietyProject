@@ -16,14 +16,11 @@ namespace HumaneSociety
             database = new AnimalInfoDataContext();
             employee = new Employee();
         }
-
-        //Prompt for Adopter
         public void AdopterPrompt()
         {
             Console.WriteLine("Welcome to the Adopter menu.");
             Console.WriteLine("Enter '1' to search for animal by traits, '2' to create a personal info profile, '3' to return to Portal menu.\n");
         }
-        //Method for menu
         public void AdopterMenu()
         {
             string option;
@@ -48,8 +45,6 @@ namespace HumaneSociety
                     break;
             }
         }
-
-        //Method for creating a table to share personal info
         public void AddProfile()
         {
             Console.WriteLine("Enter first name, last name, age, city\n");
@@ -84,7 +79,6 @@ namespace HumaneSociety
             Console.WriteLine("City: " + adopter.City);
             Console.WriteLine("Wallet: $" + adopter.Wallet + "\n");
         }
-        //Method to search for an animal by traits
         public void SearchMenu()
         {
             string option;

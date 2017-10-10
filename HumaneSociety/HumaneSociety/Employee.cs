@@ -10,7 +10,6 @@ namespace HumaneSociety
     {
         AnimalInfoDataContext database;
         Animal_Info animal;
-        AdopterInfo adopter;
         decimal bank;
         public Employee()
         {
@@ -20,18 +19,17 @@ namespace HumaneSociety
         {
             Console.WriteLine("Employee Menu\nENTER '1' to search for an animal, '2' to add an animal to database,\n'3' to Import CSV, '4' to check Humane Society Bank,\n'5' to return to Portal.");
         }
-        //Method for employee menu 
         public void EmployeeMenu()
         {
             EmployeePrompt();
             string option;
             switch(option = Console.ReadLine())
             {
-                case "1"://For Searching for an animal
+                case "1":
                     AnimalSearch();
                     EmployeeMenu();
                     break;
-                case "2"://For Adding an animal to database
+                case "2":
                     AddAnimal();
                     EmployeeMenu();
                     break;
@@ -43,7 +41,7 @@ namespace HumaneSociety
                     CheckFunds();
                     EmployeeMenu();
                     break;
-                case "5"://Back to Portal
+                case "5":
                     Portal portal = new Portal();
                     portal.Run();
                     break;
@@ -53,7 +51,6 @@ namespace HumaneSociety
                     break;
             }
         }
-        //Method to Add an animal to the database
         public void AddAnimal()
         {
             Console.WriteLine("Enter animal type, name, age, room#, IsAdopted(false for no, true for yes), HasShots(false for no, true for yes), daily food intake.\n");
@@ -81,7 +78,6 @@ namespace HumaneSociety
             database.SubmitChanges();
             DisplayAnimalInfo(animal);
         }
-
         //Method to search for animals by ID
         public void AnimalSearch()
         {
@@ -136,7 +132,6 @@ namespace HumaneSociety
                     break;
             }
         }
-        //Method to get Adopter ID and take their moneys
         public void GetAdopter()
         {
             Console.WriteLine("Enter the ID of the person that is adopting.\n");
@@ -160,7 +155,6 @@ namespace HumaneSociety
         {
             Console.WriteLine("Humane Society has $" + bank + " in funds.\n");
         }
-        //Take adopter's cash to pay for animal
         public void PayUp(AdopterInfo person)
         {
             if (person.Wallet >= 200)
@@ -174,7 +168,6 @@ namespace HumaneSociety
                 Console.WriteLine("Not enough money to adopt today :(\n");
             }
         }
-        //Method to adopt an animal(change IsAdopted to true)
         public void ChangeAdoptedStatus(Animal_Info animal)
         {
             animal.IsAdopted = true;
@@ -198,33 +191,25 @@ namespace HumaneSociety
                     break;
             }
         }
-        //Method to administer shots to animal
         public void GiveShots(Animal_Info animal)
         {
-                animal.HasShots = true;
-                Console.WriteLine(animal.Name + " has been given shots.\n");
+            animal.HasShots = true;
+            Console.WriteLine(animal.Name + " has been given shots.\n");
         }
-        //Method for import/export CSV file (like excel)
         public void ImportCSV()
         {
             // Create the IEnumerable data source
             string[] lines = System.IO.File.ReadAllLines(@"C:/Users/Jared/Documents/Visual Studio 2015/Projects/HumaneSocietyLog.csv");
-
-            // Create the query. Put field 2 first, then
-            // reverse and combine fields 0 and 1 from the old field
+            // Create query
             IEnumerable<string> query =
                 from line in lines
                 let x = line.Split(',')
                 select x[0] + ", " + (x[1] + " " + x[2] + " " + x[3] + " " + x[4] + " " + x[5] + " " + x[6]);
-
-            // Execute the query and write out the new file. Note that WriteAllLines
-            // takes a string[], so ToArray is called on the query.
+            // Execute the query and write out the new file. WriteAllLines takes a string[], so ToArray is called on the query.
             System.IO.File.WriteAllLines(@"C:/Users/Jared/Documents/Visual Studio 2015/Projects/HumaneSocietyLog2.csv", query.ToArray());
-
             Console.WriteLine("HumaneSocietyLog2.csv written to disk. Press any key to return to Employee Menu.\n");
             Console.ReadKey();
         }
-        //Method to display animal info
         public void DisplayAnimalInfo(Animal_Info animal)
         {
             Console.WriteLine("ID: " + animal.ID);
