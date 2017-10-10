@@ -11,13 +11,14 @@ namespace HumaneSociety
         AnimalInfoDataContext database;
         Animal_Info animal;
         AdopterInfo adopter;
+        decimal bank;
         public Employee()
         {
             database = new AnimalInfoDataContext();
         }
         public void EmployeePrompt()
         {
-            Console.WriteLine("Employee Menu\nENTER '1' to search for an animal, '2' to add an animal to database, '3' to Import CSV, '4' to return to Portal.");
+            Console.WriteLine("Employee Menu\nENTER '1' to search for an animal, '2' to add an animal to database,\n'3' to Import CSV, '4' to check Humane Society Bank,\n'5' to return to Portal.");
         }
         //Method for employee menu 
         public void EmployeeMenu()
@@ -38,7 +39,11 @@ namespace HumaneSociety
                     ImportCSV();
                     EmployeeMenu();
                     break;
-                case "4"://Back to Portal
+                case "4":
+                    CheckFunds();
+                    EmployeeMenu();
+                    break;
+                case "5"://Back to Portal
                     Portal portal = new Portal();
                     portal.Run();
                     break;
@@ -125,7 +130,7 @@ namespace HumaneSociety
                 {
                     Console.WriteLine("Found adopter ID: " + element.ID);
                     //If they have enough cash, take $200
-                    //If not, cw they aint got e nuff moneys
+                    PayUp(element);
                 }
                 else
                 {
@@ -133,11 +138,28 @@ namespace HumaneSociety
                 }
             }
         }
+        public void CheckFunds()
+        {
+            Console.WriteLine("Humane Society has $" + bank + " in funds.");
+        }
+        //Take adopter's cash to pay for animal
+        public void PayUp(AdopterInfo person)
+        {
+            if (person.Wallet >= 200)
+            {
+                person.Wallet = person.Wallet - 200;
+                bank += 200;
+            }
+            else
+            {
+                Console.WriteLine("Not enough money to adopt today :(");
+            }
+        }
         //Method to adopt an animal(change IsAdopted to true)
         public void ChangeAdoptedStatus(Animal_Info animal)
         {
-                animal.IsAdopted = true;
-                Console.WriteLine(animal.Name + " is now adopted.");
+            animal.IsAdopted = true;
+            Console.WriteLine(animal.Name + " is now adopted.");
         }
         public void AskForShots(Animal_Info element)
         {
