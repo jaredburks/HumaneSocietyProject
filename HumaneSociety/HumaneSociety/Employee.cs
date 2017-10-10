@@ -10,7 +10,7 @@ namespace HumaneSociety
     {
         AnimalInfoDataContext database;
         Animal_Info animal;
-
+        AdopterInfo adopter;
         public Employee()
         {
             database = new AnimalInfoDataContext();
@@ -117,19 +117,27 @@ namespace HumaneSociety
         public void GetAdopter()
         {
             Console.WriteLine("Enter the ID of the person that is adopting.\n");
+            int person = Convert.ToInt16(Console.ReadLine());
+
+            foreach (AdopterInfo element in database.AdopterInfos)
+            {
+                if (element.ID == person)
+                {
+                    Console.WriteLine("Found adopter ID: " + element.ID);
+                    //If they have enough cash, take $200
+                    //If not, cw they aint got e nuff moneys
+                }
+                else
+                {
+                    Console.WriteLine("No person with that ID in database.");
+                }
+            }
         }
         //Method to adopt an animal(change IsAdopted to true)
         public void ChangeAdoptedStatus(Animal_Info animal)
         {
-            if(animal.IsAdopted == false)
-            {
                 animal.IsAdopted = true;
                 Console.WriteLine(animal.Name + " is now adopted.");
-            }
-            else
-            {
-                Console.WriteLine(animal.Name + " is already adopted.");
-            }
         }
         public void AskForShots(Animal_Info element)
         {
