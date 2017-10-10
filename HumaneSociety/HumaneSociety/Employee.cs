@@ -56,7 +56,7 @@ namespace HumaneSociety
         //Method to Add an animal to the database
         public void AddAnimal()
         {
-            Console.WriteLine("Enter animal type, name, age, room#, IsAdopted(false for no, true for yes), HasShots(false for no, true for yes), and amount of food");
+            Console.WriteLine("Enter animal type, name, age, room#, IsAdopted(false for no, true for yes), HasShots(false for no, true for yes), daily food intake.");
             animal = new Animal_Info
             {
                 Animal_type = Console.ReadLine(),
