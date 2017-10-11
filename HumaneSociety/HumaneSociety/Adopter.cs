@@ -68,7 +68,6 @@ namespace HumaneSociety
             database.AdopterInfos.InsertOnSubmit(adopter);
             database.SubmitChanges();
             DisplayAdopterInfo(adopter);
-
         }
         public void DisplayAdopterInfo(AdopterInfo adopter)
         {
@@ -125,16 +124,15 @@ namespace HumaneSociety
             {
                 Console.WriteLine("Enter the age (as an integer in years) of the animal(s) you want to search by.");
                 int age = Convert.ToInt32(Console.ReadLine());
-                foreach (Animal_Info element in database.Animal_Infos)
+
+                IEnumerable<Animal_Info> query =
+                from a in database.Animal_Infos
+                where a.Age == age
+                orderby a.ID
+                select a;
+                foreach (Animal_Info element in query)
                 {
-                    if (element.Age == age)
-                    {
-                        employee.DisplayAnimalInfo(element);
-                    }
-                    else
-                    {
-                        Console.WriteLine("No animal of that age in database.\n");
-                    }
+                    employee.DisplayAnimalInfo(element);
                 }
             }
             catch (FormatException)
@@ -145,16 +143,14 @@ namespace HumaneSociety
         }
         public void SearchByShots()
         {
-            foreach (Animal_Info element in database.Animal_Infos)
+            IEnumerable<Animal_Info> query =
+            from a in database.Animal_Infos
+            where a.HasShots == true
+            orderby a.ID
+            select a;
+            foreach(Animal_Info element in query)
             {
-                if (element.HasShots == true)
-                {
-                    employee.DisplayAnimalInfo(element);
-                }
-                else
-                {
-                    Console.WriteLine("No animals have shots in database.\n");
-                }
+                employee.DisplayAnimalInfo(element);
             }
         }
     }
