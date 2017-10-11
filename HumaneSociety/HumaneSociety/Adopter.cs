@@ -106,16 +106,15 @@ namespace HumaneSociety
         {
             Console.WriteLine("Enter the type of animal you want to search for.\nNOTE: Case sensitive.\n");
             string type = Console.ReadLine();
-            foreach (Animal_Info element in database.Animal_Infos)
+
+            IEnumerable<Animal_Info> query =
+            from animal in database.Animal_Infos
+            where animal.Animal_type == type
+            orderby animal.ID
+            select animal;
+            foreach (Animal_Info element in query)
             {
-                if (element.Animal_type == type)
-                {
-                    employee.DisplayAnimalInfo(element);
-                }
-                else
-                {
-                    Console.WriteLine("No animal of that type in database.\n");
-                }
+                employee.DisplayAnimalInfo(element);
             }
         }
         public void SearchByAge()
@@ -126,10 +125,10 @@ namespace HumaneSociety
                 int age = Convert.ToInt32(Console.ReadLine());
 
                 IEnumerable<Animal_Info> query =
-                from a in database.Animal_Infos
-                where a.Age == age
-                orderby a.ID
-                select a;
+                from animal in database.Animal_Infos
+                where animal.Age == age
+                orderby animal.ID
+                select animal;
                 foreach (Animal_Info element in query)
                 {
                     employee.DisplayAnimalInfo(element);
@@ -144,10 +143,10 @@ namespace HumaneSociety
         public void SearchByShots()
         {
             IEnumerable<Animal_Info> query =
-            from a in database.Animal_Infos
-            where a.HasShots == true
-            orderby a.ID
-            select a;
+            from animal in database.Animal_Infos
+            where animal.HasShots == true
+            orderby animal.ID
+            select animal;
             foreach(Animal_Info element in query)
             {
                 employee.DisplayAnimalInfo(element);
