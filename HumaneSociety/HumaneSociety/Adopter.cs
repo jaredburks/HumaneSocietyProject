@@ -105,6 +105,7 @@ namespace HumaneSociety
         }
         public void SearchByType()
         {
+            Console.WriteLine("Enter the type of animal you want to search for.\nNOTE: Case sensitive.\n");
             string type = Console.ReadLine();
             foreach (Animal_Info element in database.Animal_Infos)
             {
@@ -122,6 +123,7 @@ namespace HumaneSociety
         {
             try
             {
+                Console.WriteLine("Enter the age (as an integer in years) of the animal(s) you want to search by.");
                 int age = Convert.ToInt32(Console.ReadLine());
                 foreach (Animal_Info element in database.Animal_Infos)
                 {
