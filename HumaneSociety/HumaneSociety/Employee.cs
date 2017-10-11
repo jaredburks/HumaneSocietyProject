@@ -109,7 +109,7 @@ namespace HumaneSociety
                                 AskToAdopt(element);
                             }
                         }
-                        else
+                        else //Need to fix so this only displays once and not for every animal that doesn't match with ID
                         {
                             Console.WriteLine("No animal with that ID in database.\n");
                         }
@@ -142,21 +142,29 @@ namespace HumaneSociety
         }
         public void GetAdopter()
         {
-            Console.WriteLine("Enter the ID of the person that is adopting.\n");
-            int person = Convert.ToInt16(Console.ReadLine());
-
-            foreach (AdopterInfo element in database.AdopterInfos)
+            try
             {
-                if (element.ID == person)
+                Console.WriteLine("Enter the ID of the person that is adopting.\n");
+                int person = Convert.ToInt16(Console.ReadLine());
+
+                foreach (AdopterInfo element in database.AdopterInfos)
                 {
-                    Console.WriteLine("Found adopter ID: " + element.ID);
-                    //If they have enough cash, take $200
-                    PayUp(element);
+                    if (element.ID == person)
+                    {
+                        Console.WriteLine("Found adopter ID: " + element.ID);
+                        //If they have enough cash, take $200
+                        PayUp(element);
+                    }
+                    else
+                    {
+                        Console.WriteLine("No person with that ID in database.\n");
+                    }
                 }
-                else
-                {
-                    Console.WriteLine("No person with that ID in database.\n");
-                }
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Please only enter numbers for adopter's ID.");
+                GetAdopter();
             }
         }
         public void CheckFunds()
