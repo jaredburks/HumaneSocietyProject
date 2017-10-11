@@ -89,28 +89,36 @@ namespace HumaneSociety
             }
             else
             {
-                Console.WriteLine("Enter the ID of the animal you want to find");
-                int creature = Convert.ToInt16(Console.ReadLine());
-
-                foreach (Animal_Info element in database.Animal_Infos)
+                try
                 {
-                    if (element.ID == creature)
+                    Console.WriteLine("Enter the ID of the animal you want to find\n");
+                    int creature = Convert.ToInt16(Console.ReadLine());
+
+                    foreach (Animal_Info element in database.Animal_Infos)
                     {
-                        Console.WriteLine("Found animal ID: " + element.ID);
-                        DisplayAnimalInfo(element);
-                        if (element.HasShots == false)
+                        if (element.ID == creature)
                         {
-                            AskForShots(element);
+                            Console.WriteLine("Found animal ID: " + element.ID);
+                            DisplayAnimalInfo(element);
+                            if (element.HasShots == false)
+                            {
+                                AskForShots(element);
+                            }
+                            if (element.IsAdopted == false)
+                            {
+                                AskToAdopt(element);
+                            }
                         }
-                        if (element.IsAdopted == false)
+                        else
                         {
-                            AskToAdopt(element);
+                            Console.WriteLine("No animal with that ID in database.\n");
                         }
                     }
-                    else
-                    {
-                        Console.WriteLine("No animal with that ID in database.\n");
-                    }
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("You've entered an invalid response. Please only enter a number.\n");
+                    AnimalSearch();
                 }
             }
         }
