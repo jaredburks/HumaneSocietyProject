@@ -120,18 +120,26 @@ namespace HumaneSociety
         }
         public void SearchByAge()
         {
-            int age = Convert.ToInt32(Console.ReadLine());
-            foreach (Animal_Info element in database.Animal_Infos)
+            try
             {
-                if (element.Age == age)
+                int age = Convert.ToInt32(Console.ReadLine());
+                foreach (Animal_Info element in database.Animal_Infos)
                 {
-                    employee.DisplayAnimalInfo(element);
-                }
-                else
-                {
-                    Console.WriteLine("No animal of that age in database.\n");
+                    if (element.Age == age)
+                    {
+                        employee.DisplayAnimalInfo(element);
+                    }
+                    else
+                    {
+                        Console.WriteLine("No animal of that age in database.\n");
+                    }
                 }
             }
+            catch (FormatException)
+            {
+                Console.WriteLine("Please enter only numbers for age.");
+                SearchByAge();
+            }            
         }
         public void SearchByShots()
         {
